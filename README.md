@@ -5,7 +5,6 @@
 ## Template Quickstart 
 
 The index.html file has everything you need to get started, just add your js sprig game in the following segment replacing my game:
-> If you get lost, check how I implemented my game inside the [index.html](https://github.com/jzaleta/sprig-web-template/blob/main/index.html) file!
 
 ```html
 <!-- The Sprig device's aspect ratio is 5:4  -->
