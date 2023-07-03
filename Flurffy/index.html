@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sprig Web Template</title>
+    <meta
+      name="description"
+      content="A template to easily publish your Sprig games on the web"
+    />
+    <meta name="author" content="Javier Zaleta Martínez" />
+    <meta property="og:title" content="Sprig Web Template" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://github.com/jzaleta/sprig-web-template"
+    />
+    <meta property="og:image" content="https://github.com/jzaleta.png" />
+    <meta
+      property="og:description"
+      content="A template to easily publish your Sprig games on the web"
+    />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>"
+    />
+  </head>
+
+  <body>
+    <!-- The Sprig device's aspect ratio is 5:4  -->
+    <canvas width="500" height="400" id="canvas" tabindex="0"></canvas>
+
+    <script type="module">
+      import { webEngine } from "https://esm.sh/sprig@1/web";
+
+      async function runGameFromCode(code) {
+        const game = webEngine(document.getElementById("canvas"));
+        const fn = new Function(...Object.keys(game.api), code);
+        fn(...Object.values(game.api));
+      }
+
+      // Fetch the game code from a URL
+      async function fetchGameCode(url) {
+        const response = await fetch(url);
+        const code = await response.text();
+        runGameFromCode(code);
+      }
+
+      // Replace this with your .js game URL
+      const gameURL =
+        "https://raw.githubusercontent.com/hackclub/sprig/main/games/Flurffy.js";
+      fetchGameCode(gameURL);
+    </script>
+
+    <style>
+      body {
+        background: rgba(250, 254, 215, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-image: url("https://sprig.hackclub.com/pcb.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      canvas {
+        position: absolute;
+        border: 3px solid #078969;
+        background-color: black;
+        opacity: 1;
+      }
+    </style>
+  </body>
+</html>
